@@ -1,0 +1,10 @@
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // Adiciona esta linha para exportação estática
+  output: 'export',
+  
+  // A configuração de "trust all domains" (cabeçalhos) foi removida
+  // porque não é suportada na exportação estática.
+};
+
+module.exports = nextConfig;
