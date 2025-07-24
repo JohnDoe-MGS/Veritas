@@ -1,0 +1,47 @@
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { Toaster } from "@/components/ui/sonner";
+import { RiskProvider } from "@/contexts/RiskContext";
+import { ActionPlanProvider } from "@/contexts/ActionPlanContext";
+import { FrameworkProvider } from "@/contexts/FrameworkContext";
+import { AuditProvider } from "@/contexts/AuditContext";
+import { NotificationProvider } from "@/contexts/NotificationContext";
+import { DocumentProvider } from "@/contexts/DocumentContext";
+
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "COMPLIANCE VERITAS",
+  description: "Plataforma completa de Gestão de Compliance Corporativo",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="pt-BR">
+      <body className={inter.className}>
+        <AuthProvider>
+          <RiskProvider>
+            <ActionPlanProvider>
+              <FrameworkProvider>
+                <AuditProvider>
+                  <DocumentProvider>
+                    <NotificationProvider>
+                      {children}
+                      <Toaster />
+                    </NotificationProvider>
+                  </DocumentProvider>
+                </AuditProvider>
+              </FrameworkProvider>
+            </ActionPlanProvider>
+          </RiskProvider>
+        </AuthProvider>
+      </body>
+    </html>
+  );
+}
